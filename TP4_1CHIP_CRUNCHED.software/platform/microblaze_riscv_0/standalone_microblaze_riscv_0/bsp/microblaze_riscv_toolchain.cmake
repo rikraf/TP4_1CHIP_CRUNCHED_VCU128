@@ -13,9 +13,9 @@ set( CMAKE_AR riscv64-unknown-elf-ar CACHE FILEPATH "Archiver" )
 set( CMAKE_SIZE mb-size CACHE FILEPATH "Size" )
 set( CMAKE_SYSTEM_PROCESSOR "microblaze_riscv" )
 set( CMAKE_SYSTEM_NAME "Generic" )
-set( CMAKE_HW_FLAGS "-march=rv32imc_zicsr_zifencei -mabi=ilp32" )
+set( CMAKE_HW_FLAGS "-march=rv32imafc_zicsr_zifencei_zicbom -mabi=ilp32f" )
 
-set( CMAKE_BSP_HW_LINK_FLAGS "-march=rv32imc_zicsr_zifencei" )
+set( CMAKE_BSP_HW_LINK_FLAGS "-march=rv32imafc_zicsr_zifencei_zicbomf" )
 
 set( CMAKE_COMPILER_LIB_PATH "" )
 set( CMAKE_SPECS_FILE "$ENV{ESW_REPO}/scripts/specs/microblaze/Xilinx.spec" CACHE STRING "Specs file path for using CMAKE toolchain files" )

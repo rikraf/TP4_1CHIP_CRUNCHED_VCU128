@@ -3,8 +3,8 @@
   "type": "PLATFORM",
   "configuration": {
     "description": "",
-    "xsa": "/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.hw_export/design_1_wrapper_01.xsa",
-    "xsaPathInPlatform": "platform/hw/design_1_wrapper_01.xsa",
+    "xsa": "/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.hw_export/design_1_wrapper_05.xsa",
+    "xsaPathInPlatform": "platform/hw/design_1_wrapper_05.xsa",
     "emulationXsa": "",
     "emulationXsaPathInPlatform": "",
     "isCustomFSBL": false,

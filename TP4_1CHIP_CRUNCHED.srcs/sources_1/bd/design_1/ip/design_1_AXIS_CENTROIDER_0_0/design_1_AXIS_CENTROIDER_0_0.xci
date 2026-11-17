@@ -9,7 +9,7 @@
     "parameters": {
       "component_parameters": {
         "Component_Name": [ { "value": "design_1_AXIS_CENTROIDER_0_0", "resolve_type": "user", "usage": "all" } ],
-        "C_SIZE": [ { "value": "64", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "C_SIZE": [ { "value": "512", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_USE_DSP_FOR_TOT_ACC": [ { "value": "true", "resolve_type": "user", "format": "bool", "usage": "all" } ],
         "C_REG_CENTROID_INPUTS": [ { "value": "false", "resolve_type": "user", "format": "bool", "usage": "all" } ],
         "C_ADD_FANOUT_BUFS": [ { "value": "false", "resolve_type": "user", "format": "bool", "usage": "all" } ],
@@ -25,7 +25,7 @@
         "C_PAD_OUT_WIDTH": [ { "value": "0", "value_src": "user", "resolve_type": "user", "format": "long", "usage": "all" } ]
       },
       "model_parameters": {
-        "C_SIZE": [ { "value": "64", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_SIZE": [ { "value": "512", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_USE_DSP_FOR_TOT_ACC": [ { "value": "true", "resolve_type": "generated", "format": "bool", "usage": "all" } ],
         "C_REG_CENTROID_INPUTS": [ { "value": "false", "resolve_type": "generated", "format": "bool", "usage": "all" } ],
         "C_ADD_FANOUT_BUFS": [ { "value": "false", "resolve_type": "generated", "format": "bool", "usage": "all" } ],
@@ -172,5 +172,5 @@
       }
     }
   },
-  "checksum": "636fcf25"
+  "checksum": "4c1e6de8"
 }

@@ -7,3 +7,6 @@ TP4_1CHIP_CRUNCHED.archive
 TP4_1CHIP_CRUNCHED.mcs
 TP4_1CHIP_CRUNCHED.prm
 design_1_wrapper_out.bit
+*.mcs
+*.zip
+TP4_1CHIP_CRUNCHED.configfiles/old/

@@ -10,7 +10,7 @@
       "component_parameters": {
         "C_BASEADDR": [ { "value": "0x0000000000000000", "value_src": "propagated", "value_permission": "bd", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
         "C_HIGHADDR": [ { "value": "0x00000000000FFFFF", "value_src": "propagated", "value_permission": "bd", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
-        "C_MASK": [ { "value": "0x0000000040100000", "value_src": "propagated", "value_permission": "bd_and_user", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
+        "C_MASK": [ { "value": "0x00000000c0100000", "value_src": "propagated", "value_permission": "bd_and_user", "resolve_type": "user", "format": "bitString", "usage": "all" } ],
         "C_MASK1": [ { "value": "0x0000000000800000", "value_permission": "bd_and_user", "resolve_type": "user", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_MASK2": [ { "value": "0x0000000000800000", "value_permission": "bd_and_user", "resolve_type": "user", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_MASK3": [ { "value": "0x0000000000800000", "value_permission": "bd_and_user", "resolve_type": "user", "format": "bitString", "enabled": false, "usage": "all" } ],
@@ -27,7 +27,7 @@
         "C_PROT_CFG6": [ { "value": "0xFF", "resolve_type": "user", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_PROT_CFG7": [ { "value": "0xFF", "resolve_type": "user", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_NUM_LMB": [ { "value": "1", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "C_LMB_AWIDTH": [ { "value": "32", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "C_LMB_AWIDTH": [ { "value": "34", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_LMB_DWIDTH": [ { "value": "32", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_LMB_PROTOCOL": [ { "value": "0", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_LMB_HAS_PROT": [ { "value": "0", "value_src": "propagated", "resolve_type": "user", "format": "long", "usage": "all" } ],
@@ -53,7 +53,7 @@
         "C_HIGHADDR": [ { "value": "0x00000000000FFFFF", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
         "C_BASEADDR": [ { "value": "0x0000000000000000", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
         "C_NUM_LMB": [ { "value": "1", "resolve_type": "generated", "format": "long", "usage": "all" } ],
-        "C_MASK": [ { "value": "0x0000000040100000", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
+        "C_MASK": [ { "value": "0x00000000c0100000", "resolve_type": "generated", "format": "bitString", "usage": "all" } ],
         "C_MASK1": [ { "value": "0x0000000000800000", "resolve_type": "generated", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_MASK2": [ { "value": "0x0000000000800000", "resolve_type": "generated", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_MASK3": [ { "value": "0x0000000000800000", "resolve_type": "generated", "format": "bitString", "enabled": false, "usage": "all" } ],
@@ -69,7 +69,7 @@
         "C_PROT_CFG5": [ { "value": "0xFF", "resolve_type": "generated", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_PROT_CFG6": [ { "value": "0xFF", "resolve_type": "generated", "format": "bitString", "enabled": false, "usage": "all" } ],
         "C_PROT_CFG7": [ { "value": "0xFF", "resolve_type": "generated", "format": "bitString", "enabled": false, "usage": "all" } ],
-        "C_LMB_AWIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ],
+        "C_LMB_AWIDTH": [ { "value": "34", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_LMB_DWIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_LMB_PROTOCOL": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
         "C_LMB_HAS_PROT": [ { "value": "0", "resolve_type": "generated", "format": "long", "usage": "all" } ],
@@ -116,7 +116,7 @@
       "ports": {
         "LMB_Clk": [ { "direction": "in", "driver_value": "0x0" } ],
         "LMB_Rst": [ { "direction": "in", "driver_value": "0x0" } ],
-        "LMB_ABus": [ { "direction": "in", "size_left": "0", "size_right": "31" } ],
+        "LMB_ABus": [ { "direction": "in", "size_left": "0", "size_right": "33" } ],
         "LMB_WriteDBus": [ { "direction": "in", "size_left": "0", "size_right": "31", "driver_value": "0" } ],
         "LMB_AddrStrobe": [ { "direction": "in" } ],
         "LMB_ReadStrobe": [ { "direction": "in" } ],
@@ -142,7 +142,7 @@
           "mode": "slave",
           "memory_map_ref": "SLMB",
           "parameters": {
-            "ADDR_WIDTH": [ { "value": "32", "value_src": "ip_propagated", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
+            "ADDR_WIDTH": [ { "value": "34", "value_src": "ip_propagated", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "DATA_WIDTH": [ { "value": "32", "value_src": "ip_propagated", "value_permission": "bd", "resolve_type": "generated", "format": "long", "is_ips_inferred": true, "is_static_object": false } ],
             "READ_WRITE_MODE": [ { "value": "READ_WRITE", "value_permission": "bd", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
             "PROTOCOL": [ { "value": "STANDARD", "value_src": "ip_propagated", "value_permission": "bd", "resolve_type": "generated", "is_ips_inferred": true, "is_static_object": false } ],
@@ -378,5 +378,5 @@
       }
     }
   },
-  "checksum": "86ebb9d2"
+  "checksum": "ce064a2c"
 }

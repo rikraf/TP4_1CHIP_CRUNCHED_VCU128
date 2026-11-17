@@ -12,10 +12,10 @@ BOARD:STRING=vcu128
 CMAKE_BUILD_TYPE:STRING=
 
 // LDFLAGS
-CMAKE_CXX_LINK_FLAGS:STRING= -Wl,--gc-sections -march=rv32imc_zicsr_zifencei
+CMAKE_CXX_LINK_FLAGS:STRING= -Wl,--gc-sections -march=rv32imafc_zicsr_zifencei_zicbomf
 
 // LDFLAGS
-CMAKE_C_LINK_FLAGS:STRING= -Wl,--gc-sections -march=rv32imc_zicsr_zifencei
+CMAKE_C_LINK_FLAGS:STRING= -Wl,--gc-sections -march=rv32imafc_zicsr_zifencei_zicbomf
 
 // Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=/usr/local
@@ -48,13 +48,13 @@ SPEED_GRADE:STRING=2L
 SUBDIR_LIST:STRING=ALL
 
 // ASM FLAGS
-TOOLCHAIN_ASM_FLAGS:STRING=  -march=rv32imc_zicsr_zifencei -mabi=ilp32 -DSDT
+TOOLCHAIN_ASM_FLAGS:STRING=  -march=rv32imafc_zicsr_zifencei_zicbom -mabi=ilp32f -DSDT
 
 // CXXFLAGS
-TOOLCHAIN_CXX_FLAGS:STRING=  -march=rv32imc_zicsr_zifencei -mabi=ilp32 -DSDT
+TOOLCHAIN_CXX_FLAGS:STRING=  -march=rv32imafc_zicsr_zifencei_zicbom -mabi=ilp32f -DSDT
 
 // CFLAGS
-TOOLCHAIN_C_FLAGS:STRING=  -march=rv32imc_zicsr_zifencei -mabi=ilp32 -DSDT
+TOOLCHAIN_C_FLAGS:STRING=  -march=rv32imafc_zicsr_zifencei_zicbom -mabi=ilp32f -DSDT
 
 // Flags used by compiler to generate dependency files
 TOOLCHAIN_DEP_FLAGS:STRING= -MMD -MP
@@ -315,7 +315,7 @@ proc_assembler:STRING=riscv64-unknown-elf-gcc
 proc_compiler:STRING=riscv64-unknown-elf-gcc
 
 // Compiler Flags used in BSP and library generation.'-c'flag stands for 'compile and assemble, but do not link'.Without this flag, gcc tries to link the code, which will fail because there is no application involved during libgen.'-O2' can be overwritten by extra compile flags.
-proc_compiler_flags:STRING=  -march=rv32imc_zicsr_zifencei -mabi=ilp32 -DSDT;-c
+proc_compiler_flags:STRING=  -march=rv32imafc_zicsr_zifencei_zicbom -mabi=ilp32f -DSDT;-c
 
 // Extra Compiler Flags used in BSP and library generation
 proc_extra_compiler_flags:STRING= -O2 -g -ffunction-sections -fdata-sections -Wall -Wextra -fno-tree-loop-distribute-patterns

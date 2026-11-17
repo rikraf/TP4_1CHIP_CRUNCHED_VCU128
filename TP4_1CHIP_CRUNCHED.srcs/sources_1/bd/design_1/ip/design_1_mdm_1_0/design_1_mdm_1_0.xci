@@ -23,10 +23,10 @@
         "C_S_AXI_ADDR_WIDTH": [ { "value": "4", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_S_AXI_DATA_WIDTH": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_S_AXI_ACLK_FREQ_HZ": [ { "value": "100000000", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "C_M_AXI_ADDR_WIDTH": [ { "value": "32", "value_src": "propagated", "value_permission": "bd_and_user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "C_M_AXI_ADDR_WIDTH": [ { "value": "34", "value_src": "propagated", "value_permission": "bd_and_user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_M_AXI_DATA_WIDTH": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_M_AXI_THREAD_ID_WIDTH": [ { "value": "1", "resolve_type": "user", "format": "long", "usage": "all" } ],
-        "C_ADDR_SIZE": [ { "value": "32", "value_src": "propagated", "value_permission": "bd_and_user", "resolve_type": "user", "format": "long", "usage": "all" } ],
+        "C_ADDR_SIZE": [ { "value": "34", "value_src": "propagated", "value_permission": "bd_and_user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_DATA_SIZE": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_LMB_PROTOCOL": [ { "value": "0", "value_permission": "bd_and_user", "resolve_type": "user", "format": "long", "usage": "all" } ],
         "C_M_AXIS_DATA_WIDTH": [ { "value": "32", "resolve_type": "user", "format": "long", "usage": "all" } ],
@@ -77,10 +77,10 @@
         "C_S_AXI_ADDR_WIDTH": [ { "value": "4", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
         "C_S_AXI_DATA_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
         "C_S_AXI_ACLK_FREQ_HZ": [ { "value": "100000000", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
-        "C_M_AXI_ADDR_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
+        "C_M_AXI_ADDR_WIDTH": [ { "value": "34", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
         "C_M_AXI_DATA_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
         "C_M_AXI_THREAD_ID_WIDTH": [ { "value": "1", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
-        "C_ADDR_SIZE": [ { "value": "32", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
+        "C_ADDR_SIZE": [ { "value": "34", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
         "C_DATA_SIZE": [ { "value": "32", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
         "C_LMB_PROTOCOL": [ { "value": "0", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
         "C_M_AXIS_DATA_WIDTH": [ { "value": "32", "resolve_type": "generated", "format": "long", "enabled": false, "usage": "all" } ],
@@ -170,5 +170,5 @@
       }
     }
   },
-  "checksum": "bd1c237a"
+  "checksum": "ed66f52f"
 }

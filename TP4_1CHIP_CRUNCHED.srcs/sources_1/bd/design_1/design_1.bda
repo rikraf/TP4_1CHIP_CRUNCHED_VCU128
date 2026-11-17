@@ -467,6 +467,81 @@
             },
             "V18": {
                 "VT": "AC",
+                "BA": "0x044A10000",
+                "HA": "0x044A1FFFF",
+                "BP": "C_BASEADDR",
+                "HP": "C_HIGHADDR",
+                "MA": "Data",
+                "MX": "/microblaze_riscv_0",
+                "MI": "M_AXI_DP",
+                "MS": "SEG_axi_quad_spi_0_Reg",
+                "MV": "xilinx.com:ip:microblaze_riscv:1.0",
+                "SX": "/axi_quad_spi_0",
+                "SI": "AXI_LITE",
+                "SS": "Reg",
+                "SV": "xilinx.com:ip:axi_quad_spi:3.2",
+                "TM": "data",
+                "TU": "register"
+            },
+            "V19": {
+                "VT": "AC",
+                "BA": "0x44B00000",
+                "HA": "0x44BFFFFF",
+                "BP": "C0_DDR4_MEMORY_MAP_CTRL_BASEADDR",
+                "HP": "C0_DDR4_MEMORY_MAP_CTRL_HIGHADDR",
+                "MA": "Data",
+                "MX": "/microblaze_riscv_0",
+                "MI": "M_AXI_DP",
+                "MS": "SEG_ddr4_0_C0_REG",
+                "MV": "xilinx.com:ip:microblaze_riscv:1.0",
+                "SX": "/ddr4_0",
+                "SI": "C0_DDR4_S_AXI_CTRL",
+                "MM": "C0_DDR4_MEMORY_MAP_CTRL",
+                "SS": "C0_REG",
+                "SV": "xilinx.com:ip:ddr4:2.2",
+                "TM": "data",
+                "TU": "register"
+            },
+            "V20": {
+                "VT": "AC",
+                "BA": "0x080000000",
+                "HA": "0x0BFFFFFFF",
+                "BP": "C0_DDR4_MEMORY_MAP_BASEADDR",
+                "HP": "C0_DDR4_MEMORY_MAP_HIGHADDR",
+                "MA": "Data",
+                "MX": "/microblaze_riscv_0",
+                "MI": "M_AXI_DC",
+                "MS": "SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK",
+                "MV": "xilinx.com:ip:microblaze_riscv:1.0",
+                "SX": "/ddr4_0",
+                "SI": "C0_DDR4_S_AXI",
+                "MM": "C0_DDR4_MEMORY_MAP",
+                "SS": "C0_DDR4_ADDRESS_BLOCK",
+                "SV": "xilinx.com:ip:ddr4:2.2",
+                "TM": "data",
+                "TU": "memory"
+            },
+            "V21": {
+                "VT": "AC",
+                "BA": "0x080000000",
+                "HA": "0x0BFFFFFFF",
+                "BP": "C0_DDR4_MEMORY_MAP_BASEADDR",
+                "HP": "C0_DDR4_MEMORY_MAP_HIGHADDR",
+                "MA": "Instruction",
+                "MX": "/microblaze_riscv_0",
+                "MI": "M_AXI_IC",
+                "MS": "SEG_ddr4_0_C0_DDR4_ADDRESS_BLOCK",
+                "MV": "xilinx.com:ip:microblaze_riscv:1.0",
+                "SX": "/ddr4_0",
+                "SI": "C0_DDR4_S_AXI",
+                "MM": "C0_DDR4_MEMORY_MAP",
+                "SS": "C0_DDR4_ADDRESS_BLOCK",
+                "SV": "xilinx.com:ip:ddr4:2.2",
+                "TM": "instruction",
+                "TU": "memory"
+            },
+            "V22": {
+                "VT": "AC",
                 "BA": "0xC0000000",
                 "HA": "0xC007FFFF",
                 "BP": "C_S_AXI_BASEADDR",
@@ -483,7 +558,7 @@
                 "TM": "data",
                 "TU": "memory"
             },
-            "V19": {
+            "V23": {
                 "VT": "AC",
                 "BA": "0xC2000000",
                 "HA": "0xC207FFFF",
@@ -593,6 +668,26 @@
             },
             {
                 "src": "V19",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V20",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V21",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V22",
+                "trg": "V2",
+                "EH": "2"
+            },
+            {
+                "src": "V23",
                 "trg": "V2",
                 "EH": "2"
             }

@@ -248,7 +248,7 @@ tp4_addr_decode DECODE_PIX_ADDR(
     //Will this Gray-Bin converter work in a single cycle?
     wire [15:0] g2b_out0;
     gray2bin G2B0(
-        .gray(roll_core_out[45:30]),
+        .gray(roll_core_out_d1[45:30]),
         .decode_on(decode_gray),
         .out(g2b_out0));
 

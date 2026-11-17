@@ -78,7 +78,7 @@ endif()
 
 
 
-set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include;/opt/2025.2/gnu/riscv/lin/x86_64-oesdk-linux/usr/lib/riscv32-xilinx-elf/gcc/riscv32-xilinx-elf/13.4.0/include;/opt/2025.2/gnu/riscv/lin/x86_64-oesdk-linux/usr/lib/riscv32-xilinx-elf/gcc/riscv32-xilinx-elf/13.4.0/include-fixed;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include/c++/13.4.0;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include/c++/13.4.0/riscv32-xilinx-elf/rv32imc/ilp32;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include/c++/13.4.0/backward;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include")
+set(CMAKE_CXX_IMPLICIT_INCLUDE_DIRECTORIES "/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include;/opt/2025.2/gnu/riscv/lin/x86_64-oesdk-linux/usr/lib/riscv32-xilinx-elf/gcc/riscv32-xilinx-elf/13.4.0/include;/opt/2025.2/gnu/riscv/lin/x86_64-oesdk-linux/usr/lib/riscv32-xilinx-elf/gcc/riscv32-xilinx-elf/13.4.0/include-fixed;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include/c++/13.4.0;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include/c++/13.4.0/riscv32-xilinx-elf/rv32imafc_zicsr/ilp32f;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include/c++/13.4.0/backward;/opt/2025.2/Vitis/gnu/riscv/lin/riscv32-xilinx-elf/usr/include")
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "")
 set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "")
 set(CMAKE_CXX_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

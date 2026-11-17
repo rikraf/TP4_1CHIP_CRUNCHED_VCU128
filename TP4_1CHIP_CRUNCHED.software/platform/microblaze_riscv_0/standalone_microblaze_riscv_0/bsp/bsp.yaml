@@ -129,7 +129,7 @@ proc_config:
       permission: readonly
       type: string
       value: '  -march=rv32imc_zicsr_zifencei -mabi=ilp32 -DSDT;-c'
-      default: '  -march=rv32imc_zicsr_zifencei -mabi=ilp32 -DSDT;-c'
+      default: '  -march=rv32imafc_zicsr_zifencei_zicbom -mabi=ilp32f -DSDT;-c'
       options: []
       description: Compiler Flags used in BSP and library generation.'-c'flag stands
         for 'compile and assemble, but do not link'.Without this flag, gcc tries to
@@ -186,6 +186,10 @@ drv_info:
     driver: iic
     ip_name: axi_iic
     path: /opt/2025.2/Vitis/data/embeddedsw/XilinxProcessorIPLib/drivers/iic_v3_14
+  axi_quad_spi_0:
+    driver: spi
+    ip_name: axi_quad_spi
+    path: /opt/2025.2/Vitis/data/embeddedsw/XilinxProcessorIPLib/drivers/spi_v4_15
   axi_timer_0:
     driver: tmrctr
     ip_name: axi_timer

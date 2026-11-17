@@ -25,6 +25,13 @@
 		memory_type = "memory";
 		reg = <0xc2000000 0x80000>;
 	};
+	ddr4_0_memory: memory@80000000 {
+		compatible = "xlnx,ddr4-2.2";
+		xlnx,ip-name = "ddr4";
+		device_type = "memory";
+		memory_type = "memory";
+		reg = <0x0 0x80000000 0x0 0x40000000>;
+	};
 	microblaze_riscv_0_local_memory_dlmb_bram_if_cntlr_memory: memory@0 {
 		compatible = "xlnx,lmb-bram-if-cntlr-4.0";
 		xlnx,ip-name = "lmb_bram_if_cntlr";
@@ -37,6 +44,7 @@
 	};
 	aliases {
 		serial0 = &axi_uartlite_0;
+		spi0 = &axi_quad_spi_0;
 		i2c0 = &axi_iic_0;
 		ethernet0 = &axi_ethernet_0;
 	};
@@ -45,6 +53,7 @@
 			      <0xC0000000 &axi_bram_ctrl_gain 0xC0000000 0x80000>, 
 			      <0xC2000000 &axi_bram_ctrl_offset_memory 0xC2000000 0x80000>, 
 			      <0xC2000000 &axi_bram_ctrl_offset 0xC2000000 0x80000>, 
+			      <0x80000000 &ddr4_0_memory 0x80000000 0x40000000>, 
 			      <0x00000000 &microblaze_riscv_0_local_memory_dlmb_bram_if_cntlr_memory 0x00000000 0x100000>, 
 			      <0x00000000 &microblaze_riscv_0_local_memory_dlmb_bram_if_cntlr 0x00000000 0x100000>, 
 			      <0x00100000 &timepix4_command_out_0 0x00100000 0x1000>, 
@@ -59,7 +68,8 @@
 			      <0x40c00000 &axi_ethernet_0 0x40c00000 0x40000>, 
 			      <0x41200000 &microblaze_riscv_0_axi_intc 0x41200000 0x10000>, 
 			      <0x41c00000 &axi_timer_0 0x41c00000 0x10000>, 
-			      <0x44a00000 &axi_ethernet_0_fifo 0x44a00000 0x10000>;
+			      <0x44a00000 &axi_ethernet_0_fifo 0x44a00000 0x10000>, 
+			      <0x44a10000 &axi_quad_spi_0 0x44a10000 0x10000>;
 		#ranges-address-cells = <0x1>;
 		#ranges-size-cells = <0x1>;
 	};

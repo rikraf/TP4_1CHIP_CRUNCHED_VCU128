@@ -633,7 +633,9 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_cache_vxworks.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_hw.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xgpio_l.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_l.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_exception.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xmem_config.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_mem.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_testmem.h
@@ -698,6 +700,7 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xbasic_types.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_assert.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_fifo.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_i.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_macroback.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/cpu.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/sys_arch.h
@@ -1344,7 +1347,9 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_cache_vxworks.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_hw.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xgpio_l.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_l.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_exception.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xmem_config.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_mem.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_testmem.h
@@ -1409,6 +1414,7 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xbasic_types.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_assert.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_fifo.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_i.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_macroback.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/cpu.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/sys_arch.h
@@ -2055,7 +2061,9 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_cache_vxworks.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_hw.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xgpio_l.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_l.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_exception.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xmem_config.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_mem.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_testmem.h
@@ -2120,6 +2128,7 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xbasic_types.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_assert.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_fifo.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_i.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_macroback.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/cpu.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/sys_arch.h
@@ -2766,7 +2775,9 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_cache_vxworks.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_hw.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xgpio_l.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_l.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_exception.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xmem_config.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_mem.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_testmem.h
@@ -2831,6 +2842,7 @@
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xbasic_types.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_assert.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xaxiemacif_fifo.h
+/home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xspi_i.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/xil_macroback.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/cpu.h
 /home/richardraffanti/xilproj/TP4_1CHIP_CRUNCHED/TP4_1CHIP_CRUNCHED.software/platform/microblaze_riscv_0/standalone_microblaze_riscv_0/bsp/include/../include/arch/sys_arch.h
