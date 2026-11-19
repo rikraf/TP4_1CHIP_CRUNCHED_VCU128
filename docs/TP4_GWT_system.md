@@ -1,6 +1,17 @@
 # Timepix4 Gigabit Wireline Transmitter (GWT) Readout System
 
-This memo describes the design of the readout system for the Timepix4 single-chip board, using the TP4’s Gigabit transmitters (as opposed to using the slow control readout). There are two firmware designs, “TP4_1GbE” (repo name “TP4_1GbE”), which outputs UDP packets slowly over the VCU128’s 1GbE interface, and “TP4_100Gb” (repo name “TP4_Dec2023”), which uses a 100GBASE-SR optical transceiver plugged into one of the VCU128’s QSFP cages to output very high rate data over one 100GbE link. Both systems use the 1GbE for control and housekeeping data.
+This memo describes the design of the readout system for the single-chip Timepix4 systems, using the TP4’s Gigabit transmitters (as opposed to using TP4's slow control readout). The FPGA board employed is the VCU128.
+
+There are two ASIC hardware designs:
+- the Single_ETU board ("Matt's board"), schematic EAG-00233, with a single wire-bonded TP4 ASIC and an FMC connector, to plug directly into the VCU128
+- the TP4_COMPACT board set, with a single wire-bonded TP4 ASIC on a 62mm round board, an FMC board, and an optional flex PCB to join the two, usually exiting a vacuum enclosure. Hardware design is here: https://github.com/rikraf/TP4_compact_hardware
+
+There are three firmware designs:
+-  “TP4_1GbE” which outputs raw data in UDP packets slowly over the VCU128’s 1GbE interface,  https://github.com/rikraf/TP4_1GbE.  This is mainly of legacy interest, or maybe for porting to a new FPGA board which only has a 1GbE interface someday.  Compiled under Vivado 2022.1
+- “TP4_1CHIP_RAW_VCU128” which outputs raw data in  UDP packets at very high rate data over one 100GbE link.
+- "TP4_1CHIP_CRUNCHED_VCU128" which outputs photon cluster centroids over one 100GbE link
+
+All systems use the 1GbE for control and housekeeping data.
 
 ## Contents
 
@@ -105,8 +116,8 @@ The data in the TP4 is scrambled before transmission for two reasons: first, the
 Because of the reversal of the TP4 bit order, the descrambler used in Aurora needs a simple modification:
 
 ![Descrambler HDL modified for TP4 bit order](images/09_descrambler_tp4_bit_order.png)
-
-The 64b data out of the scrambler are passed along with a data_valid signal. A “pass_control_characters” control is provided which, if asserted, will cause all of the IDLE words to be passed along to the output data stream. The TP4 outputs these IDLE words constantly in between data words; this could be useful in debug. The output data is synchronous to the rx_usrclk_out signal from the block, at 1.28Gb/sec bit rate these clocks are 20MHz.
+plugged into one of the VCU128’s QSFP cagestransceiver
+The 64b data out of the scrambler are passed along with a data_valid signal. A “pass_control_characters” control is provided which, if asserted, will cause all of the IDLE words to be passed along to the output data stream. The TP4 outputs these IDLE words constantly in between data words; this could be useful in debug. The output data is synchronous to the rx_usrclk_out signal from the block, at 1.28Gb/sec bit rate these clocks are 20MHz.plugged into one of the VCU128’s QSFP cagestransceiver
 
 In the 1GbE system, the output streams from two of these SimpleRx blocks go through two clock-crossing FIFOs (necessary to cross the clock domain boundaries between the two rx_usrclk_out clocks and the system 100MHz clock) and then are merged using an axis switch and written into a memory-mapped FIFO (all of this is standard Xilinx IP) from which it is read out by the MicroBlaze processor, and formatted into UDP packets.
 
@@ -262,7 +273,7 @@ Install the NIC in the PC, and the driver- I installed *MLNX_WinOF2-3_20_50010_A
 
 <img src="images/17_nic_jumbo_packet.png" alt="NIC advanced settings: Jumbo packet set to maximum" width="300">
 
-Plug a transceiver into the NIC and one into QSFP3 of the VCU128, plug the cable in. Load up the FPGA bitfile (after power cycle this must be done twice and sometimes 3 times to get the 1GbE interface working). You can test the 100GbE interface without any TP4 hardware by using the fake data generator. Send the S1 and K1 commands in `TP4_control.py` (S1 turns science data on, K1 turns fake data on to its lowest rate). Run Wireshark to see the packets:
+Plug a 100GBASE-SR optical transceiver into the NIC and one into QSFP3 of the VCU128, plug the cable in. Load up the FPGA bitfile (after power cycle this must be done twice and sometimes 3 times to get the 1GbE interface working). You can test the 100GbE interface without any TP4 hardware by using the fake data generator. Send the S1 and K1 commands in `TP4_control.py` (S1 turns science data on, K1 turns fake data on to its lowest rate). Run Wireshark to see the packets:
 
 ![Wireshark capture of fake-data UDP packets](images/18_wireshark_fake_data.png)
 

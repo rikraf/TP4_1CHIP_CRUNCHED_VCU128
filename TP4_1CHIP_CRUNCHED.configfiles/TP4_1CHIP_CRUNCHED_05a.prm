@@ -1,0 +1,12 @@
+===================================
+Configuration Memory information
+===================================
+File Format        MCS
+Interface          SPIX4
+Size               2048M
+Start Address      0x00000000
+End Address        0x7FFFFFFF
+
+Addr1         Addr2         Date                    File(s)
+0x00000000    0x0289DA8F    Sep 18 16:10:22 2026    ./top_out.bit
+0x08000000    0x08090F85    Sep 18 16:28:04 2026    ./TP4_1CHIP_CRUNCHED.software/TP4_service/TP4_service.srec
