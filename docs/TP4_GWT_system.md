@@ -3,14 +3,15 @@
 This memo describes the design of the readout system for the single-chip Timepix4 systems, using the TP4’s Gigabit transmitters (as opposed to using TP4's slow control readout). The FPGA board employed is the VCU128.
 
 There are two ASIC hardware designs:
-- the **Single_ETU** board ("Matt's board"), schematic EAG-00233, with a single wire-bonded TP4 ASIC and an FMC connector, to plug directly into the VCU128
+- the **Single_ETU** board ("Matt's board"), schematic EAG-00233, with a single wire-bonded TP4 ASIC and an FMC connector, to plug directly into the VCU128.  Hardware design is here:https://github.com/rikraf/TP4_Single_ETU-board
 - the **TP4_COMPACT** board set, with a single wire-bonded TP4 ASIC on a 62mm round board, an FMCplus board, and an optional flex PCB to join the two, usually exiting a vacuum enclosure. Hardware design is here: https://github.com/rikraf/TP4_compact_hardware
 
 The VCU128 FMC-plus (560-pin) connector can accept either the FMC-plus on the TP4_COMPACT board, or the 400-pin FMC connector on the Single_ETU board.
 
-There are three firmware designs:
+There are four firmware designs:
 -  **TP4_1GbE** which outputs raw data in UDP packets slowly over the VCU128’s 1GbE interface,  https://github.com/rikraf/TP4_1GbE.  This is mainly of legacy interest, or maybe for porting to a new FPGA board which only has a 1GbE interface someday.  Compiled under Vivado 2022.1
 - **TP4_1CHIP_RAW_VCU128** which outputs raw data in  UDP packets at very high rate data over one 100GbE link. https://github.com/rikraf/TP4_1CHIP_RAW_VCU128.  Compiled under Vivado 2025.2
+- **TP4_multipair_VCU128**, same as TP4_1CHIP_RAW_VCU128, but which can use from 2 to 16 input pairs from the TP4 chip https://github.com/rikraf/TP4_multipair_VCU128.  This design will ultimately replace TP4_1CHIP_RAW_VCU128 
 - **TP4_1CHIP_CRUNCHED_VCU128** which outputs photon cluster centroids over one 100GbE link. https://github.com/rikraf/TP4_1CHIP_CRUNCHED_VCU128. Compiled under Vivado 2025.2
 
 All systems use the 1GbE for control and housekeeping data.
@@ -44,12 +45,7 @@ For this board, we use two GWT pairs, one from the TP4 top and one from the bott
 
 <img src="images/02_gwt_pairs_schematic.png" alt="Schematic excerpt showing the GWT serial output pairs" width="150">
 
-These pairs are connected as follows:
 
-| Name | FMC | FPGA | Bank |
-|---|---|---|---|
-| SERIAL_OUT0_T_P/N | A2/A3 | BB51/52 | 124 |
-| SERIAL_OUT4_B_P/N | A18/A19 | AW53/54 | 125 |
 
 The VCU128 requires a modification to bring a reference clock to the FPGA bank where the Gigabit pairs are received. The programmable oscillator, U95, used to supply one QSFP cage on the VCU128 is connected to the MGTREFCLK0 input pair of bank 124 using a cobbled-on pair of wires (C1187/8 are removed):
 
@@ -60,34 +56,23 @@ The VCU128 requires a modification to bring a reference clock to the FPGA bank w
 The oscillator U95 must be changed from its default power-on frequency of 156.25MHz to the necessary 160MHz using the “Board UI” program from Xilinx. This can be made non-volatile, so that the board powers up with this setting. The MGTREFCLK of bank 124 can also supply bank 125.
 
 ### TP4_COMPACT board set
-All 16 available pairs are brought out of the ASIC.  And the 160MHz refrence oscillator is incorporated into the board design, so the kluge described above is not necessary.
+All 16 available pairs are brought out of the ASIC.  The firmware can be compiled to accept ASIC data on from 2 to 16 high-speed pairs.  The 160MHz reference oscillator is incorporated into the board design, so the kluge described above is not necessary.  The pinout of the FMCplus connector is [here](https://github.com/rikraf/TP4_compact_hardware/blob/master/TP4_Compact_FMC%20PCB/fmc_fpga_PINOUT.xlsx).
 
-## Firmware design
+# Firmware design
 
-I put together a Microblaze soft processor system in Vivado/Vitis 2022.1. The system uses a lot of standard Xilinx IP blocks and some custom blocks:
+The firmware consists of a Microblaze soft processor system, employing much standard Xilinx IP blocks, and these custom blocks:
 
 - TP4_command_out
 - TP4_slow_control_in
 - SimpleRx
 
-![Vivado block design, 1GbE system](images/05_block_design_1gbe.png)
 
-*Block Design, 1GbE system*
 
 ### Slow Control Interface
 
-We have the following connections to the slow interface:
+The TP4_command_out module receives commands from the Microblaze processor consisting of a 16-bit header, 16-bit register address, and a payload of 16 to 4096 bits; these data are stored in a FIFO.  When commanded, the command is shifted out at 40MHz.
 
-| Signal | FPGA pins | FMC pins | ASIC |
-|---|---|---|---|
-| Shutter_P/N | A25 | D17/D18 | SHUTTER_B |
-| T0Sync_P/N | F18 | D20/D21 | T0Sync_B |
-| Reset_P/N | E26 | D14/D15 | Reset_B |
-| SC_clk_in_P/N | F26 | D8/D9 | SC_CLOCK_IN_B |
-| SC_data_in_P/N | H27 | D11/12 | SC_DATA_IN_B |
-| Refclk40_P/N | G21 | H31/32 | TPX4_REFCLK_IN (drives both t and b) |
-| SC_clk_out_P/N | E24 | G6/G7 | SC_CLOCK_OUT_B |
-| SC_data_out_P/N | B27 | G9/G10 | SC_DATA_OUT_B |
+In response, the ASIC sends out a packet of similar size.  The TP4_slow_control_in module receives the response and buffers it in a FIFO.  The Microblaze polls the FIFO and reads the response.
 
 ### SimpleRx
 
@@ -124,8 +109,8 @@ The data in the TP4 is scrambled before transmission for two reasons: first, the
 Because of the reversal of the TP4 bit order, the descrambler used in Aurora needs a simple modification:
 
 ![Descrambler HDL modified for TP4 bit order](images/09_descrambler_tp4_bit_order.png)
-plugged into one of the VCU128’s QSFP cagestransceiver
-The 64b data out of the scrambler are passed along with a data_valid signal. A “pass_control_characters” control is provided which, if asserted, will cause all of the IDLE words to be passed along to the output data stream. The TP4 outputs these IDLE words constantly in between data words; this could be useful in debug. The output data is synchronous to the rx_usrclk_out signal from the block, at 1.28Gb/sec bit rate these clocks are 20MHz.plugged into one of the VCU128’s QSFP cagestransceiver
+
+The 64b data out of the scrambler are passed along with a data_valid signal. A “pass_control_characters” control is provided which, if asserted, will cause all of the IDLE words to be passed along to the output data stream. The TP4 outputs these IDLE words constantly in between data words; this could be useful in debug. The output data is synchronous to the rx_usrclk_out signal from the block, at 1.28Gb/sec bit rate these clocks are 20MHz.
 
 In the 1GbE system, the output streams from two of these SimpleRx blocks go through two clock-crossing FIFOs (necessary to cross the clock domain boundaries between the two rx_usrclk_out clocks and the system 100MHz clock) and then are merged using an axis switch and written into a memory-mapped FIFO (all of this is standard Xilinx IP) from which it is read out by the MicroBlaze processor, and formatted into UDP packets.
 
@@ -141,7 +126,7 @@ In the 100GbE system a state-machine based system is used to read out a pair of 
 
 *100GbE system Architecture*
 
-Each SimpleRx block outputs its own clock; for a GWT bit rate of 1.28Gb/s the output clock frequency is 20MHz; at 5.12Gb/s it will be 80MHz as shown above. The 100GbE CMAC has an AXIS interface of 512b width operating at 322MHz. The maximum possible data throughput to the CMAC is then 165Gb/s, far in excess of the 103Gb/s line rate of 100Gb Ethernet (there is about 3% overhead related to the 66/64b encoding and the Reed-Solomon Forward Error Correction). The CMAC exerts “back-pressure” to slow down the input data rate to the required speed. I introduced the 200MHz clock domain to make timing closure easier; 200MHz still supports the full 100Gb/s throughput. (In the current system, if we get the ASIC outputs running at 5.12Gb/s that will still only total about 10% of the available bandwidth, but a future 3x3 system, or a smaller system employing more output pairs, could consume the whole available bandwidth).
+Each SimpleRx block outputs its own clock; at 5.12Gb/s it is 80MHz as shown above. The 100GbE CMAC has an AXIS interface of 512b width operating at 322MHz. The maximum possible data throughput to the CMAC is then 165Gb/s, far in excess of the 103Gb/s line rate of 100Gb Ethernet (there is about 3% overhead related to the 66/64b encoding and the Reed-Solomon Forward Error Correction). The CMAC exerts “back-pressure” to slow down the input data rate to the required speed. I introduced the 200MHz clock domain to make timing closure easier; 200MHz still supports the full 100Gb/s throughput. With just two pairs operating at 5.12Gb/s just 10% of the available output bandwidth is used; with all 16 pairs we can still accomodate the full 16*5.12Gb/s = 82Gb/s. (In fact 160MHz is enough in the middle clock domain).
 
 The output of each SimpleRx is written into a FIFO. A simple state machine controller manages the readout of this pair of FIFOs, reading each one as data becomes available and toggling back and forth as necessary. The 64b output words are accumulated into a 512b word in a shift register. When a complete new 512b word is available it is written into another FIFO which buffers up an entire UDP packet.
 
@@ -159,7 +144,17 @@ The header information is fixed since all of the packets are of the same size (8
 
 ![Controller state machine for writing UDP packets to the CMAC](images/13_udp_packet_controller.png)
 
-## Data Formats
+### Fake Data Generator
+
+The system can generate fake data packets at a variable rate by setting the `fake_rate` parameter:
+
+- `fake_rate` = 0, generator off.
+- `fake_rate` > 0, output UDP packet rate ~= `fake_rate` \* 5430/sec.
+
+So, for `fake_rate` = 255, that’s 1.38e6 UDP packets/sec of 9000 bytes each, so about 100 Gb/s.
+
+At the maximum setting the output packet rate approximately fills the available 100Gb/s bandwidth. The contents of the packets are a series of LFSR31 values, 64b wide, each repeated 8x.
+# Data Formats
 
 The 1GbE interface has a fixed IP address of 192.168.1.10 and expects the host to be at 192.168.1.100. Command and command response packets are written to the system’s UDP port 5001; science packets are written to the host’s UDP port 5001 and housekeeping packets are written to port 5002.
 
@@ -169,13 +164,13 @@ Each UDP science packet payload starts with the identifier byte 0x77 and is foll
 
 ### Science Data Format, 100GbE system
 
-Sent to IP address 192.168.4.100, MAC address ff:ff:ff:ff:ff:ff. (There is no ARP functionality, so we use the broadcast MAC address). UDP port 5003, payload size 8918B (so 8960B with eth, IP, and UDP headers).
+Sent to IP address 192.168.4.100, MAC address ff:ff:ff:ff:ff:ff. (There is no ARP functionality, so we use the broadcast MAC address). UDP port 5003, payload size 8918B (so 8960B with 42B of eth, IP, and UDP headers).
 
-A full payload will look like this:
+A full payload looks like this:
 
 | Payload byte | Contents |
 |---|---|
-| 0–17 | unused |
+| 0–17 | all zeroes |
 | 18–19 | elapsed time, 11b little-endian |
 | 20–21 | packet serial #, 16b little-endian |
 | 22–29 | ASIC response 0, 64b little-endian |
@@ -183,7 +178,7 @@ A full payload will look like this:
 | … | … |
 | 8910–8917 | ASIC response 1111, 64b little-endian |
 
-Total maximum number of TPX4 packets per UDP packet is 1112 (8918-22 bytes for the payload header / 8)
+Total maximum number of TPX4 packets per UDP packet is 1112 = (8918 payload bytes - 22 payload header bytes) / 8
 
 Packets may not always be full, but will always be of the same size. A non-full packet will have the unused part of the packet filled with 0xff, so the software can look for the first 0xffffffffffffffff ASIC response and ignore the rest of the packet.
 
@@ -197,7 +192,7 @@ When the system is operating in “Raw” data mode (using either the design fro
 
 ## “Crunched” data flow
 
-In the 100GbE design (repo “TP4_Dec2023”) I made a branch called “TP4_crunched” to implement the IP cores written by Sequent for calculating centroids of event clusters. The design includes software switches to remove the additional computation when it’s desired to look at raw data.
+In the TP4_1CHIP_CRUNCHED_VCU128 design the raw data is processed to calculate the centroids of event clusters using the IP modules written by Sequent. The design includes software switches to remove the additional computation when it’s desired to look at raw data.  The designs will be kept separate: the use of multiple pairs for each detector half is not consistent with the centroiding logic, since in order to calculate a centroid all of the photon events must be processed in the same centroider.
 
 A block diagram of the additional logic is shown here
 
@@ -215,7 +210,7 @@ The *Gain/OS Correct* block performs a TOT’ = TOT\*k1 + k2 linear correction t
 
 The *Centroider* block groups the pixel events into clusters and computes the X- and Y-centroid of each cluster.
 
-There are five software switches to control the dataflow:
+There are six software switches to control the dataflow:
 
 - `decode_pixadd`
 - `decode_gray`
@@ -258,16 +253,6 @@ Where:
 - `sum_tot[15:0]` is the sum of the CTOT values of the pixels in that cluster (analogous to total charge)
 - `X[15:0]` and `Y[15:0]` are the computed coordinates of the centroid of the cluster
 
-## Fake Data Generator
-
-The system can generate fake data packets at a variable rate by setting the `fake_rate` parameter:
-
-- `fake_rate` = 0, generator off.
-- `fake_rate` > 0, output UDP packet rate ~= `fake_rate` \* 5430/sec.
-
-So, for `fake_rate` = 255, that’s 1.38e6 UDP packets/sec of 9000 bytes each, so about 100 Gb/s.
-
-At the maximum setting the output packet rate approximately fills the available 100Gb/s bandwidth. The contents of the packets are a series of LFSR31 values, 64b wide, each repeated 8x.
 
 ## MicroBlaze Software
 
@@ -289,7 +274,7 @@ Note that each set of 8B is repeated 8x. We could do a pretty good error rate te
 
 ## The > 1.28 Gb/s problem
 
-I was stuck for a long time on the fact that the system worked when compiled for TP4 output bit rate of 1.28Gb/s but not for 2.56 or 5.12. I implemented In-system Bit Error Rate (IBERT) modules in the FPGA to examine the signal integrity. These use the “native” data- just whatever happens to be coming into the receiver- to plot “eye diagrams”, showing the smearing of the edges of the received data. These looked very clean at 1.28Gb/s:
+I was stuck for a long time on the fact that the system worked when compiled for TP4 output bit rate of 1.28Gb/s but not for 2.56 or 5.12. (But see update below.) I implemented In-system Bit Error Rate (IBERT) modules in the FPGA to examine the signal integrity. These use the “native” data- just whatever happens to be coming into the receiver- to plot “eye diagrams”, showing the smearing of the edges of the received data. These looked very clean at 1.28Gb/s:
 
 ![IBERT eye diagrams at 1.28 Gb/s](images/19_ibert_eye_1g28.png)
 
@@ -333,28 +318,6 @@ Having done that the design seems to work fine at both 2.56 and 5.12. At 5.12 Gb
 
 ![IBERT eye diagram at 5.12 Gb/s, bottom](images/27_ibert_eye_5g12_bot.png)
 
-*BOT*
+## Update in 2026, using Vivado 2025.2
+I was able to recompile the firmware under 2025.2 without doing any of that; the hardware works at 5.12Gb/s even without making these changes.  
 
-## Known Bugs, issues
-
-The “Have to start it twice” bug- I’d like to fix this, it has to do with the FPGA reading back the status of the 1GbE media converter module at startup, the speed comes back wrong.
-
-My VCU128 (MAC 00:0A:35:05:4B:5B) has an unreliable 1GbE connection. I always get some, and sometimes a lot, of these resend errors:
-
-![1GbE resend errors](images/28_1gbe_resend_errors.png)
-
-- ~~In just a little testing of the 100GbE system I’ve seen the board spit out random looking data, just like it does sometimes with the 1GbE system (no surprise). Need to debug this.~~
-- ~~Beyond that I’d like to explore getting the GB transmitters in the TP4 working at a higher speed; I’m suspecting signal integrity which may be manageable by tuning the equalizers in the receivers.~~
-- ~~I’d like to add some more data to the housekeeping, it’s currently just the 4 board-level temperatures. I’d like to add the ASIC temp and some of the internal VCC testpoints.~~
-
-## Revision history
-
-| Date | Author | Change |
-|---|---|---|
-| 2023-04-24 | RR | Original |
-| 2023-10-12 | RR | Added info about the > 1.28 Gb bug |
-| 2024-01-17 | RR | Corrected 100Gb/s UDP packet format |
-| 2024-08-27 | RR | Added discussion of the “Crunched” data flow |
-| 2026-11-17 | RR | Converted from Word (TP4_GWT_system.docx) to Markdown |
-
-Further revisions are tracked in git history.
