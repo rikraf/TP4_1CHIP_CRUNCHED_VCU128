@@ -1,15 +1,17 @@
-# Timepix4 Gigabit Wireline Transmitter (GWT) Readout System
+# Timepix4 VCU128 Readout Systems
 
 This memo describes the design of the readout system for the single-chip Timepix4 systems, using the TP4’s Gigabit transmitters (as opposed to using TP4's slow control readout). The FPGA board employed is the VCU128.
 
 There are two ASIC hardware designs:
-- the Single_ETU board ("Matt's board"), schematic EAG-00233, with a single wire-bonded TP4 ASIC and an FMC connector, to plug directly into the VCU128
-- the TP4_COMPACT board set, with a single wire-bonded TP4 ASIC on a 62mm round board, an FMC board, and an optional flex PCB to join the two, usually exiting a vacuum enclosure. Hardware design is here: https://github.com/rikraf/TP4_compact_hardware
+- the **Single_ETU** board ("Matt's board"), schematic EAG-00233, with a single wire-bonded TP4 ASIC and an FMC connector, to plug directly into the VCU128
+- the **TP4_COMPACT** board set, with a single wire-bonded TP4 ASIC on a 62mm round board, an FMCplus board, and an optional flex PCB to join the two, usually exiting a vacuum enclosure. Hardware design is here: https://github.com/rikraf/TP4_compact_hardware
+
+The VCU128 FMC-plus (560-pin) connector can accept either the FMC-plus on the TP4_COMPACT board, or the 400-pin FMC connector on the Single_ETU board.
 
 There are three firmware designs:
--  “TP4_1GbE” which outputs raw data in UDP packets slowly over the VCU128’s 1GbE interface,  https://github.com/rikraf/TP4_1GbE.  This is mainly of legacy interest, or maybe for porting to a new FPGA board which only has a 1GbE interface someday.  Compiled under Vivado 2022.1
-- “TP4_1CHIP_RAW_VCU128” which outputs raw data in  UDP packets at very high rate data over one 100GbE link.
-- "TP4_1CHIP_CRUNCHED_VCU128" which outputs photon cluster centroids over one 100GbE link
+-  **TP4_1GbE** which outputs raw data in UDP packets slowly over the VCU128’s 1GbE interface,  https://github.com/rikraf/TP4_1GbE.  This is mainly of legacy interest, or maybe for porting to a new FPGA board which only has a 1GbE interface someday.  Compiled under Vivado 2022.1
+- **TP4_1CHIP_RAW_VCU128** which outputs raw data in  UDP packets at very high rate data over one 100GbE link. https://github.com/rikraf/TP4_1CHIP_RAW_VCU128.  Compiled under Vivado 2025.2
+- **TP4_1CHIP_CRUNCHED_VCU128** which outputs photon cluster centroids over one 100GbE link. https://github.com/rikraf/TP4_1CHIP_CRUNCHED_VCU128. Compiled under Vivado 2025.2
 
 All systems use the 1GbE for control and housekeeping data.
 
@@ -35,9 +37,12 @@ All systems use the 1GbE for control and housekeeping data.
 
 ![Photo of the test setup: VCU128 with the single-chip board](images/01_hardware_photo.png)
 
-The hardware consists of Matt’s Single Chip Board, schematic EAG-00233, and the VCU128 FPGA development board from Xilinx. We use two GWT pairs, one from the TP4 top and one from the bottom to read out the chip (eight are available from each half, though only a subset of those are available on this board, and a minimum of one is required from each half to read out the entire 448-by-512 pixel matrix):
+The photo shows the Single ETU board plugged into the VCU128 FPGA development board from Xilinx. 
 
-<img src="images/02_gwt_pairs_schematic.png" alt="Schematic excerpt showing the GWT serial output pairs" width="300">
+### Single ETU Board 
+For this board, we use two GWT pairs, one from the TP4 top and one from the bottom to read out the chip (eight are available from each half, though only a subset of those are available on this board, and a minimum of one is required from each half to read out the entire 448-by-512 pixel matrix):
+
+<img src="images/02_gwt_pairs_schematic.png" alt="Schematic excerpt showing the GWT serial output pairs" width="150">
 
 These pairs are connected as follows:
 
@@ -53,6 +58,9 @@ The VCU128 requires a modification to bring a reference clock to the FPGA bank w
 ![Photo of the wire pair added from U95 to bank 124 on the VCU128](images/04_vcu128_refclk_mod_photo.png)
 
 The oscillator U95 must be changed from its default power-on frequency of 156.25MHz to the necessary 160MHz using the “Board UI” program from Xilinx. This can be made non-volatile, so that the board powers up with this setting. The MGTREFCLK of bank 124 can also supply bank 125.
+
+### TP4_COMPACT board set
+All 16 available pairs are brought out of the ASIC.  And the 160MHz refrence oscillator is incorporated into the board design, so the kluge described above is not necessary.
 
 ## Firmware design
 
